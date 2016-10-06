@@ -19,7 +19,7 @@ namespace Project_TARDIS
         // Note - these field objects do not require properties since they
         //        are not accessed outside of the controller
         //
-        private ConsoleView _gameConsole;
+        private ConsoleView _gameConsoleView;
         private Player _gamePlayer;
         private Universe _gameUniverse;
 
@@ -36,17 +36,6 @@ namespace Project_TARDIS
         public Controller()
         {
             InitializeGame();
-
-            //
-            // instantiate a player and universe object
-            //
-
-            _gamePlayer = new Player();
-            _gameUniverse = new Universe();
-
-            //
-            // instantiate a ConsoleView object
-            //
 
             //
             // begins running the application UI
@@ -66,6 +55,20 @@ namespace Project_TARDIS
         private void InitializeGame()
         {
 
+            //
+            // instantiate a player and universe object
+            //
+
+            _gamePlayer = new Player();
+            _gameUniverse = new Universe();
+
+            //
+            // instantiate a ConsoleView object
+            //
+
+            _gameConsoleView = new ConsoleView(_gamePlayer, _gameUniverse);
+
+            InitializeUniverse();
         }
 
         /// <summary>
@@ -82,6 +85,7 @@ namespace Project_TARDIS
             //
             // game loop
             //
+            _usingGame = true;
             while (_usingGame)
             {
 
@@ -101,10 +105,10 @@ namespace Project_TARDIS
                         _gameConsoleView.DisplayLookAround();
                         break;
                     case PlayerAction.Move:
-                        _gamePlayer.ShipLocationID = _gameConsoleView.DisplayGetPlayersNewDestination().ShipLocationID;
+                        _gamePlayer.ShipLocation = _gameConsoleView.DisplayGetPlayersNewDestination().ShipLocationID;
                         break;
                     case PlayerAction.ListShipAreas:
-                        _gameConsoleView.DisplayListAllTARDISDestinations();
+                        _gameConsoleView.DisplayListAllShipSections();
                         break;
                     case PlayerAction.PlayerInfo:
                         _gameConsoleView.DisplayPlayerInfo();
@@ -133,9 +137,10 @@ namespace Project_TARDIS
             if (!_missionInitialized)
             {
                 _gameConsoleView.DisplayMissionSetupIntro();
-                _gamePlayer.Name = _gameConsoleView.DisplayGetPlayersName();
+                _gamePlayer.FirstName = _gameConsoleView.DisplayGetPlayersFirstName();
+                _gamePlayer.LastName = _gameConsoleView.DisplayGetPlayersLastName();
                 _gamePlayer.Race = _gameConsoleView.DisplayGetPlayersRace();
-                _gamePlayer.SpaceTimeLocationID = _gameConsoleView.DisplayGetPlayersNewDestination().ShipLocationID;
+                _gamePlayer.ShipLocation = _gameConsoleView.DisplayGetPlayersNewDestination().ShipLocationID;
                 _missionInitialized = true;
             }
         }
@@ -143,7 +148,7 @@ namespace Project_TARDIS
         /// <summary>
         /// initialize the universe with all of the space-time locations
         /// </summary>
-        private void IntializeUniverse()
+        private void InitializeUniverse()
         {
             _gameUniverse.ShipLocations.Add(new ShipLocation
             {
@@ -178,7 +183,7 @@ namespace Project_TARDIS
             _gameUniverse.ShipLocations.Add(new ShipLocation
             {
                 Name = "Security",
-                ShipLocationID = 3,
+                ShipLocationID = 4,
                 Description = "This is the security office. " +
                   "Lieutenant Biggs is sitting at the desk," +
                   $"He glances up at you and asks, \"{ "Is there anything I can help you with?" }\" ",
@@ -188,9 +193,19 @@ namespace Project_TARDIS
             _gameUniverse.ShipLocations.Add(new ShipLocation
             {
                 Name = "Transporter Room",
-                ShipLocationID = 3,
+                ShipLocationID = 5,
                 Description = "The Transporter is used to teleport personel and objects to a destination. " +
                   "It's currently down for maintenance...",
+                Accessable = true
+            });
+
+            _gameUniverse.ShipLocations.Add(new ShipLocation
+            {
+                Name = "Shuttle Bay",
+                ShipLocationID = 6,
+                Description = "This is the Shuttle Bay. " +
+                  "Personnel and visitors can enter and leave the ship through here via shuttle." +
+                  "There are currently three shuttles docked here.",
                 Accessable = true
             });
         }

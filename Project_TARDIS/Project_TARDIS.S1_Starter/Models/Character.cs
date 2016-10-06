@@ -22,7 +22,7 @@ namespace Project_TARDIS
             Betazoid
         }
 
-        public enum Section
+        public enum SectionType
         {
             None,
             Engineering,
@@ -31,7 +31,7 @@ namespace Project_TARDIS
             Security
         }
 
-        public enum Gender
+        public enum GenderType
         {
             None,
             Male,
@@ -43,14 +43,14 @@ namespace Project_TARDIS
         private string _firstName;
         private string _lastName;
         private string _rank;
-        private Section _section;
+        private SectionType _section;
         private RaceType _race;
-        private string _shipLocation;
+        private int _shipLocation;
         private int _age;
-        private Gender _gender;
+        private GenderType _gender;
         private RaceType race;
 
-        public string ShipLocation
+        public int ShipLocation
         {
             get { return _shipLocation; }
             set { _shipLocation = value; }
@@ -73,11 +73,12 @@ namespace Project_TARDIS
             set { _rank = "Ensign"; }
         }
 
-        public Gender gender
+        public GenderType gender
         {
             get { return _gender; }
             set { _gender = value; }
         }
+
         public Section section
         {
             get { return _section; }
@@ -87,6 +88,19 @@ namespace Project_TARDIS
         {
             get { return _age; }
             set { _age = value; }
+        }
+
+        public RaceType Race
+        {
+            get
+            {
+                return _race;
+            }
+
+            set
+            {
+                _race = value;
+            }
         }
         #endregion
 
@@ -102,7 +116,7 @@ namespace Project_TARDIS
         {
 
         }
-        //public Character(string firstName, string lastName, RaceType race, string shipLocation, string rank, int age, Gender gender, Section section)
+        //public Character(string firstName, string lastName, RaceType race, string shipLocation, string rank, int age, GenderType gender, Section section)
         //{
         //    _firstName = firstName;
         //    _lastName = lastName;
@@ -113,7 +127,7 @@ namespace Project_TARDIS
         //    _shipLocation = shipLocation;
         //}
 
-        public Character(string firstName, string lastName, Gender gender, RaceType race, string shipLocation, int age, Section section, string rank)
+        public Character(string firstName, string lastName, GenderType gender, RaceType race, int shipLocation, int age, Section section, string rank)
         {
             FirstName = firstName;
             LastName = lastName;

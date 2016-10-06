@@ -16,7 +16,8 @@ namespace Project_TARDIS
         //
         // declare a Universe and Player object for the ConsoleView object to use
         //
-
+        Player _gamePlayer;
+        Universe _gameUniverse;
 
         #endregion
 
@@ -28,13 +29,14 @@ namespace Project_TARDIS
 
         /// <summary>
         /// default constructor to create the console view objects
-        /// </summary>
+        /// </summary>        
         public ConsoleView(Player gamePlayer, Universe gameUniverse)
-        {   
+        {
             //
             // initialize class fields
             //
-            
+            _gamePlayer = gamePlayer;
+            _gameUniverse = gameUniverse;
                      
             InitializeConsole();
         }
@@ -48,8 +50,8 @@ namespace Project_TARDIS
         /// </summary>
         private void InitializeConsole()
         {
-            ConsoleUtil.WindowTitle = "- Insert Title -";
-            ConsoleUtil.HeaderText = "- Insert Title -";
+            ConsoleUtil.WindowTitle = "- Star Trek, the text based game -";
+            ConsoleUtil.HeaderText = "- Welcome! -";
         }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Project_TARDIS
             Console.CursorVisible = false;
 
             Console.WriteLine();
-            ConsoleUtil.DisplayMessage("- Insert Exit Message - ");
+            ConsoleUtil.DisplayMessage("- Thank you for playing my game,  - ");
 
             Console.ReadKey();
 
@@ -126,11 +128,11 @@ namespace Project_TARDIS
             //
             // display header
             //
-            ConsoleUtil.HeaderText = "Mission Setup";
+            ConsoleUtil.HeaderText = "Game Setup";
             ConsoleUtil.DisplayReset();
 
 
-            ConsoleUtil.DisplayMessage("You will now be prompted to enter the starting parameters of your mission.");
+            ConsoleUtil.DisplayMessage("You will now setup your character.");
             DisplayContinuePrompt();
         }
 
@@ -152,7 +154,7 @@ namespace Project_TARDIS
             ConsoleUtil.DisplayMessage("");
             ConsoleUtil.DisplayMessage("Your mission setup is complete.");
             ConsoleUtil.DisplayMessage("");
-            ConsoleUtil.DisplayMessage("To view your TARDIS traveler information use the Main Menu.");
+            ConsoleUtil.DisplayMessage("To view your player information use the Main Menu.");
 
             DisplayContinuePrompt();
         }
@@ -161,30 +163,49 @@ namespace Project_TARDIS
         /// get player's name
         /// </summary>
         /// <returns>name as a string</returns>
-        public string DisplayGetTravelersName()
+        public string DisplayGetPlayersFirstName()
         {
-            string travelersName;
+            string playersFirstName = "";
 
             //
             // display header
             //
-            ConsoleUtil.HeaderText = "Player's Name";
+            ConsoleUtil.HeaderText = "Player's First Name";
             ConsoleUtil.DisplayReset();
 
+            ConsoleUtil.DisplayPromptMessage("Enter your First Name:");
+            playersFirstName = Console.ReadLine();
 
             DisplayContinuePrompt();
 
-            return travelersName;
+            return playersFirstName;
         }
 
+        public string DisplayGetPlayersLastName()
+        {
+            string playersLastName = "";
+
+            //
+            // display header
+            //
+            ConsoleUtil.HeaderText = "Player's Last Name";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayPromptMessage("Enter your Last Name:");
+            playersLastName = Console.ReadLine();
+
+            DisplayContinuePrompt();
+
+            return playersLastName;
+        }
         /// <summary>
         /// get and validate the player's race
         /// </summary>
         /// <returns>race as a RaceType</returns>
-        public Player.RaceType DisplayGetTravelersRace()
+        public Player.RaceType DisplayGetPlayersRace()
         {
             bool validResponse = false;
-            Player.RaceType travelersRace = Player.RaceType.None;
+            Player.RaceType playersRace = Player.RaceType.None;
 
             while (!validResponse)
             {
@@ -202,8 +223,9 @@ namespace Project_TARDIS
                 //
                 // get user response for race
                 //
-
-
+                ConsoleUtil.DisplayPromptMessage("Enter your race:");
+                Enum.TryParse<Character.RaceType>(Console.ReadLine(), out playersRace);
+                validResponse = true;
                 //
                 // validate user response for race
                 //
@@ -212,36 +234,36 @@ namespace Project_TARDIS
                 DisplayContinuePrompt();
             }
 
-            return travelersRace;
+            return playersRace;
         }
 
         /// <summary>
         /// get and validate the player's TARDIS destination
         /// </summary>
         /// <returns>Space-Time Location object</returns>
-        public SpaceTimeLocation DisplayGetTravelersNewDestination()
+        public ShipLocation DisplayGetPlayersNewDestination()
         {
             bool validResponse = false;
             int locationID;
-            SpaceTimeLocation nextSpaceTimeLocation = new SpaceTimeLocation();
+            ShipLocation nextShipLocation = new ShipLocation();
 
             while (!validResponse)
             {
                 //
                 // display header
                 //
-                ConsoleUtil.HeaderText = "TARDIS Destination";
+                ConsoleUtil.HeaderText = "Ship Section";
                 ConsoleUtil.DisplayReset();
 
                 //
                 // display a table of space-time locations
                 //
-                DisplayTARDISDestinationsTable();
+                DisplayShipSectionsTable();
 
                 //
                 // get and validate user's response for a space-time location
                 //
-
+                ConsoleUtil.DisplayPromptMessage("Enter Ship Location ID");
 
                 //
                 // validate user's response for integer
@@ -255,7 +277,7 @@ namespace Project_TARDIS
                     //
                     try
                     {
-
+                        
                     }
                     //
                     // user's response was not in the correct range
@@ -276,13 +298,13 @@ namespace Project_TARDIS
                 DisplayContinuePrompt();
             }
 
-            return nextSpaceTimeLocation;
+            return nextShipLocation;
         }
 
         /// <summary>
         /// generate a table of space-time location names and ids
         /// </summary>
-        public void DisplayTARDISDestinationsTable()
+        public void DisplayShipSectionsTable()
         {
             int locationNumber = 1;
 
@@ -300,7 +322,7 @@ namespace Project_TARDIS
         /// <summary>
         /// get the action choice from the user
         /// </summary>
-        public PlayerAction DisplayGetTravelerActionChoice()
+        public PlayerAction DisplayGetPlayerActionChoice()
         {
             PlayerAction playerActionChoice = PlayerAction.None;
             bool usingMenu = true;
@@ -322,7 +344,7 @@ namespace Project_TARDIS
                 Console.WriteLine(
                     "\t" + "1. Look Around" + Environment.NewLine +
                     "\t" + "2. Travel" + Environment.NewLine +
-                    "\t" + "3. Display All Ship Locations" + Environment.NewLine +
+                    "\t" + "3. Display All Ship Sections" + Environment.NewLine +
                     "\t" + "4. Display Player Info" + Environment.NewLine +
                     "\t" + "E. Exit" + Environment.NewLine);
 
@@ -356,8 +378,8 @@ namespace Project_TARDIS
                         break;
                     default:
                         Console.WriteLine(
-                            "It appears you have selected an incorrect choice." + Environment.NewLine +
-                            "Press any key to continue or the ESC key to quit the application.");
+                            "It appears you have selected an incorrect choice," + Environment.NewLine +
+                            "Please choose one of the choices available.");
 
                         userResponse = Console.ReadKey(true);
                         if (userResponse.Key == ConsoleKey.Escape)
@@ -387,9 +409,9 @@ namespace Project_TARDIS
         /// <summary>
         /// display a list of all TARDIS destinations
         /// </summary>
-        public void DisplayListAllTARDISDestinations()
+        public void DisplayListAllShipSections()
         {
-            ConsoleUtil.HeaderText = "Ship Location";
+            ConsoleUtil.HeaderText = "Ship Sections";
             ConsoleUtil.DisplayReset();
 
 
@@ -399,12 +421,15 @@ namespace Project_TARDIS
         /// <summary>
         /// display the current traveler information
         /// </summary>
-        public void DisplayTravelerInfo()
+        public void DisplayPlayerInfo()
         {
             ConsoleUtil.HeaderText = "Player Info";
             ConsoleUtil.DisplayReset();
 
-
+            ConsoleUtil.DisplayMessage($"First Name: {_gamePlayer.FirstName}" +
+                $"Last Name: {_gamePlayer.LastName}" +
+                $"Race: {_gamePlayer.Race}" +
+                $"Ship Location: {_gamePlayer.ShipLocation}" );
 
             DisplayContinuePrompt();
         }

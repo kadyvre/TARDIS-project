@@ -29,7 +29,7 @@ namespace Project_TARDIS
 
         }
 
-        public Player(string firstName, string lastName, int age, string rank, RaceType race, Gender gender, Section section, string shipLocation ) :base(firstName, lastName, gender, race, shipLocation, age, section, rank)
+        public Player(string firstName, string lastName, int age, string rank, RaceType race, GenderType gender, Section section, int shipLocation ) :base(firstName, lastName, gender, race, shipLocation, age, section, rank)
         {
 
         }             

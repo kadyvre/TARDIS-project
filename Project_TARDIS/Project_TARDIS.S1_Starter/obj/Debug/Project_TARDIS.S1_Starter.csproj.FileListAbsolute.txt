@@ -2,3 +2,9 @@ C:\Users\holm6\Downloads\Project_TARDIS-master\Project_TARDIS-master\Project_TAR
 C:\Users\holm6\Downloads\Project_TARDIS-master\Project_TARDIS-master\Project_TARDIS.S1_Starter\obj\Debug\Project_TARDIS.S1_Starter.csprojResolveAssemblyReference.cache
 C:\Users\holm6\Downloads\Project_TARDIS-master-20161004T134555Z\Project_TARDIS-master\Project_TARDIS.S1_Starter\bin\Debug\Project_TARDIS.exe.config
 C:\Users\holm6\Downloads\Project_TARDIS-master-20161004T134555Z\Project_TARDIS-master\Project_TARDIS.S1_Starter\obj\Debug\Project_TARDIS.S1_Starter.csprojResolveAssemblyReference.cache
+C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Starter\bin\Debug\Project_TARDIS.exe.config
+C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Starter\obj\Debug\Project_TARDIS.S1_Starter.csprojResolveAssemblyReference.cache
+C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Starter\bin\Debug\Project_TARDIS.exe
+C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Starter\bin\Debug\Project_TARDIS.pdb
+C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Starter\obj\Debug\Project_TARDIS.exe
+C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Starter\obj\Debug\Project_TARDIS.pdb

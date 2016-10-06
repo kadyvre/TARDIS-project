@@ -32,6 +32,17 @@ namespace Project_TARDIS
             set { _description = value; }
         }
 
+        public int ShipLocationID
+        {
+            get { return _shipLocationID; }
+            set { _shipLocationID = value; }
+        }
+
+        public bool Accessable
+        {
+            get { return _accesssable; }
+            set { _accesssable = value; }
+        }
         #endregion
 
 

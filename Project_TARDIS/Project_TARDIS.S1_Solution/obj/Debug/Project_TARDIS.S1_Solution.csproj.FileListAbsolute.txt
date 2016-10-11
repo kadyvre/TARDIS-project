@@ -15,3 +15,9 @@ C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Solution\obj\Debug\Pro
 C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Solution\obj\Debug\Project_TARDIS.pdb
 C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Solution\bin\Debug\Project_TARDIS.exe
 C:\Users\holm6\Downloads\Project_TARDIS\Project_TARDIS.S1_Solution\bin\Debug\Project_TARDIS.pdb
+C:\Users\holm6\Downloads\TARDIS-project-gh-pages\Project_TARDIS\Project_TARDIS.S1_Solution\bin\Debug\Project_TARDIS.exe.config
+C:\Users\holm6\Downloads\TARDIS-project-gh-pages\Project_TARDIS\Project_TARDIS.S1_Solution\bin\Debug\Project_TARDIS.exe
+C:\Users\holm6\Downloads\TARDIS-project-gh-pages\Project_TARDIS\Project_TARDIS.S1_Solution\bin\Debug\Project_TARDIS.pdb
+C:\Users\holm6\Downloads\TARDIS-project-gh-pages\Project_TARDIS\Project_TARDIS.S1_Solution\obj\Debug\Project_TARDIS.S1_Solution.csprojResolveAssemblyReference.cache
+C:\Users\holm6\Downloads\TARDIS-project-gh-pages\Project_TARDIS\Project_TARDIS.S1_Solution\obj\Debug\Project_TARDIS.exe
+C:\Users\holm6\Downloads\TARDIS-project-gh-pages\Project_TARDIS\Project_TARDIS.S1_Solution\obj\Debug\Project_TARDIS.pdb

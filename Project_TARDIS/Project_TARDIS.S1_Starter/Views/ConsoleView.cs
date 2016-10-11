@@ -206,6 +206,7 @@ namespace Project_TARDIS
         {
             bool validResponse = false;
             Player.RaceType playersRace = Player.RaceType.None;
+            
 
             while (!validResponse)
             {
@@ -218,7 +219,13 @@ namespace Project_TARDIS
                 //
                 // display all race types on a line
                 //
-
+                foreach (Character.RaceType race in Enum.GetValues(typeof(Character.RaceType)))
+                {
+                    if (race !=Character.RaceType.None)
+                    {
+                        ConsoleUtil.DisplayMessage(race.ToString());   
+                    }
+                }
 
                 //
                 // get user response for race
@@ -263,7 +270,10 @@ namespace Project_TARDIS
                 //
                 // get and validate user's response for a space-time location
                 //
-                ConsoleUtil.DisplayPromptMessage("Enter Ship Location ID");
+                ConsoleUtil.DisplayPromptMessage("Enter Ship Section:");
+                int ID = int.Parse(Console.ReadLine());
+
+                nextShipLocation = _gameUniverse.GetShipLocationByID(ID);
 
                 //
                 // validate user's response for integer
@@ -271,7 +281,7 @@ namespace Project_TARDIS
                 if (int.TryParse(Console.ReadLine(), out locationID))
                 {
                     ConsoleUtil.DisplayMessage("");
-
+                    validResponse = true;
                     //
                     // validate user's response for range and accessible
                     //
@@ -316,6 +326,15 @@ namespace Project_TARDIS
             //
             // location name and id
             //
+            foreach (ShipLocation ShipSections in _gameUniverse.ShipLocations)
+            {
+                string locationInfo;
+
+                locationInfo = ShipSections.ShipLocationID.ToString() +
+                    "     " + ShipSections.ShipLocationID;
+
+                ConsoleUtil.DisplayMessage(locationInfo);
+            }
 
         }
 
@@ -402,6 +421,7 @@ namespace Project_TARDIS
             ConsoleUtil.HeaderText = "Current Ship Location Info";
             ConsoleUtil.DisplayReset();
 
+            Console.WriteLine(_gamePlayer.ShipLocation);
 
             DisplayContinuePrompt();
         }
@@ -426,10 +446,11 @@ namespace Project_TARDIS
             ConsoleUtil.HeaderText = "Player Info";
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage($"First Name: {_gamePlayer.FirstName}" +
-                $"Last Name: {_gamePlayer.LastName}" +
-                $"Race: {_gamePlayer.Race}" +
-                $"Ship Location: {_gamePlayer.ShipLocation}" );
+            ConsoleUtil.DisplayPromptMessage($"First Name: {_gamePlayer.FirstName}" + Environment.NewLine +
+            $"Last Name: {_gamePlayer.LastName}" + Environment.NewLine +
+            $"Race: {_gamePlayer.Race}" + Environment.NewLine +
+            "Rank: Ensign" + Environment.NewLine +
+            $"Ship Location: {_gamePlayer.ShipLocation}" ); 
 
             DisplayContinuePrompt();
         }

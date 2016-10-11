@@ -79,7 +79,7 @@ namespace Project_TARDIS
             set { _gender = value; }
         }
 
-        public Section section
+        public SectionType section
         {
             get { return _section; }
             set { _section = value; }
@@ -116,7 +116,7 @@ namespace Project_TARDIS
         {
 
         }
-        //public Character(string firstName, string lastName, RaceType race, string shipLocation, string rank, int age, GenderType gender, Section section)
+        //public Character(string firstName, string lastName, RaceType race, string shipLocation, string rank, int age, GenderType gender, SectionType section)
         //{
         //    _firstName = firstName;
         //    _lastName = lastName;
@@ -127,7 +127,7 @@ namespace Project_TARDIS
         //    _shipLocation = shipLocation;
         //}
 
-        public Character(string firstName, string lastName, GenderType gender, RaceType race, int shipLocation, int age, Section section, string rank)
+        public Character(string firstName, string lastName, GenderType gender, RaceType race, int shipLocation, int age, SectionType section, string rank)
         {
             FirstName = firstName;
             LastName = lastName;

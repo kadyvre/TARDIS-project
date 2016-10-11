@@ -17,9 +17,21 @@ namespace Project_TARDIS
         }
         public ShipLocation GetShipLocationByID(int ID)
         {
-            ShipLocation spt = new ShipLocation();
+            ShipLocation spt = null;
 
-
+            foreach (ShipLocation location in ShipLocations)
+            {
+                if (location.ShipLocationID == ID)
+                {
+                    spt = location;
+                    break;
+                }
+                if (spt == null)
+                {
+                    string feedbackMessage = ($"The Ship Section {ID} you have entered does not exist," + Environment.NewLine +
+                    "Please enter a valid ID");
+                }
+            }
 
             return spt;
         }

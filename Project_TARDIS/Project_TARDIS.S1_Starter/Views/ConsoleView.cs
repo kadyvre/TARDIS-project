@@ -225,14 +225,23 @@ namespace Project_TARDIS
                     {
                         ConsoleUtil.DisplayMessage(race.ToString());   
                     }
+
                 }
 
                 //
                 // get user response for race
                 //
                 ConsoleUtil.DisplayPromptMessage("Enter your race:");
-                Enum.TryParse<Character.RaceType>(Console.ReadLine(), out playersRace);
-                validResponse = true;
+                
+                if (Enum.TryParse<Character.RaceType>(Console.ReadLine(), out playersRace))
+                {
+                    validResponse = true;
+                }
+                
+                else
+                {
+                    Console.WriteLine("Please Enter one of the races provided.");
+                }
                 //
                 // validate user response for race
                 //
@@ -271,17 +280,28 @@ namespace Project_TARDIS
                 // get and validate user's response for a space-time location
                 //
                 ConsoleUtil.DisplayPromptMessage("Enter Ship Section:");
-                int ID = int.Parse(Console.ReadLine());
+                int ID;
+                    //= int.Parse(Console.ReadLine());
 
-                nextShipLocation = _gameUniverse.GetShipLocationByID(ID);
+                
 
                 //
                 // validate user's response for integer
                 //
-                if (int.TryParse(Console.ReadLine(), out locationID))
+                if (int.TryParse(Console.ReadLine(), out ID))
                 {
-                    ConsoleUtil.DisplayMessage("");
-                    validResponse = true;
+                    if (ID > 0 && ID < 7)
+                    {
+                        nextShipLocation = _gameUniverse.GetShipLocationByID(ID);
+                        ConsoleUtil.DisplayMessage("");
+                        validResponse = true;
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please choose a valid location.");
+                    }
+                    
                     //
                     // validate user's response for range and accessible
                     //
@@ -296,14 +316,15 @@ namespace Project_TARDIS
                     {
 
                     }
+
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a number.");
                 }
                 //
                 // user's response was not an integer
                 //
-                else
-                {
-
-                }
 
                 DisplayContinuePrompt();
             }
@@ -331,7 +352,7 @@ namespace Project_TARDIS
                 string locationInfo;
 
                 locationInfo = ShipSections.ShipLocationID.ToString() +
-                    "     " + ShipSections.ShipLocationID;
+                    "     " + ShipSections.Name;
 
                 ConsoleUtil.DisplayMessage(locationInfo);
             }
@@ -421,7 +442,9 @@ namespace Project_TARDIS
             ConsoleUtil.HeaderText = "Current Ship Location Info";
             ConsoleUtil.DisplayReset();
 
-            Console.WriteLine(_gamePlayer.ShipLocation);
+            ShipLocation currentRoom = _gameUniverse.GetShipLocationByID(_gamePlayer.ShipLocation);
+            Console.WriteLine(currentRoom.Name);
+            Console.WriteLine(currentRoom.Description);
 
             DisplayContinuePrompt();
         }
@@ -433,7 +456,7 @@ namespace Project_TARDIS
         {
             ConsoleUtil.HeaderText = "Ship Sections";
             ConsoleUtil.DisplayReset();
-
+            DisplayShipSectionsTable();
 
             DisplayContinuePrompt();
         }
@@ -445,12 +468,13 @@ namespace Project_TARDIS
         {
             ConsoleUtil.HeaderText = "Player Info";
             ConsoleUtil.DisplayReset();
+            ShipLocation currentRoom = _gameUniverse.GetShipLocationByID(_gamePlayer.ShipLocation);
 
-            ConsoleUtil.DisplayPromptMessage($"First Name: {_gamePlayer.FirstName}" + Environment.NewLine +
-            $"Last Name: {_gamePlayer.LastName}" + Environment.NewLine +
-            $"Race: {_gamePlayer.Race}" + Environment.NewLine +
-            "Rank: Ensign" + Environment.NewLine +
-            $"Ship Location: {_gamePlayer.ShipLocation}" ); 
+            Console.WriteLine($"First Name: {_gamePlayer.FirstName} \n" +
+            $"Last Name: {_gamePlayer.LastName} \n" +
+            $"Race: {_gamePlayer.Race} \n" +
+            "Rank: Ensign \n" +
+            $"Ship Location: {currentRoom.Name}" ); 
 
             DisplayContinuePrompt();
         }
